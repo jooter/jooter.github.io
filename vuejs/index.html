@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Math Super Hero</title>
         <link rel="stylesheet" href="index.css">
@@ -15,7 +15,7 @@
             </p>
             <p>
                 {{ a }} {{ operation }} {{ b }} =
-                <input id="input" placeholder="Answer and Enter" autocomplete="off" v-model="answer" autofocus/>                
+                <input id="input" placeholder="Answer and Enter" autocomplete="off" v-model="answer" autofocus type="number" inputmode="numeric" pattern="[0-9]*"/>                
             </p>
             <p>
                 Total correct answers: {{ score }}
