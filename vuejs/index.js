@@ -4,7 +4,7 @@ var app = new Vue({
     data: {
         a: 1,
         b: 2,
-        operation: "x", 
+        operation: "*", 
         timeRemaining: 30, 
         score: 0,
         answer: "",
@@ -18,9 +18,19 @@ var app = new Vue({
         },
 
         checkAnswer: function () {
-            if (this.operation == "x") {
+            if (this.operation == "+") {
+                return this.a + this.b == this.answer
+            }
+            if (this.operation == "-") {
+                return this.a - this.b == this.answer
+            }
+            if (this.operation == "*") {
                 return this.a * this.b == this.answer
             }
+            if (this.operation == "/") {
+                return this.a / this.b == this.answer
+            }
+            return false
         },
 
         check: function () {
@@ -39,6 +49,17 @@ var app = new Vue({
             this.answer = ""
             this.a = getRandom()
             this.b = getRandom()
+            if (this.operation == "-") {
+                if (this.a < this.b) {
+                    [this.a, this.b] = [this.b, this.a]
+                }
+            }
+            if (this.operation == "/") {
+                if (this.b == 0) {
+                    this.b = 2
+                }
+                this.a = this.a * this.b
+            }
         }
     }
 })
@@ -51,10 +72,6 @@ function updateValue(e) {
     if (e.keyCode == 13) {
         app.check()
     }
-}
-
-function getRandom() {
-    return Math.round(Math.random() * 10)
 }
 
 function onload() {
@@ -73,4 +90,24 @@ function myCallback()
         input.placeholder = "Timeout"
         app.clear()
     }
+}
+
+const queryString = window.location.search;
+// console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const operation = urlParams.get('o')
+if (operation in ["+", "-", "*", "/"]) {
+    app.operation = operation
+} else {
+    app.operation = "*"
+}
+// console.log(product);
+
+maxInt = urlParams.get('m')
+if (maxInt === null) {
+    maxInt = 10
+}
+// console.log(maxInt)
+function getRandom() {
+    return Math.round(Math.random() * maxInt)
 }
