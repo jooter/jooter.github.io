@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Math Super Hero</title>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body onload="onload()">
+        <h1>Math Super Hero</h1>
+        <div id="app" style="font-size:20px">
+            <p>
+                Time Remaining: {{ timeRemaining }}
+            </p>
+            <p>
+                {{ a }} {{ operation }} {{ b }} =
+                <input id="input" placeholder="Answer and Enter" autocomplete="off" v-model="answer" autofocus/>                
+            </p>
+            <p>
+                Total correct answers: {{ score }}
+            </p>
+
+            <div v-if="timeRemaining == 0">
+                <p>Incorrect answers:</p>
+                <ol>
+                    <li v-for="item in incorrectList">
+                        {{ item }}
+                    </li>
+                </ol>
+                
+                <p>Correct answers:</p>
+                <ol>
+                    <li v-for="item in correctList">
+                        {{ item }}
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>
