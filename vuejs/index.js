@@ -93,21 +93,19 @@ function myCallback()
 }
 
 const queryString = window.location.search;
-// console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 const operation = urlParams.get('o')
-if (operation in ["+", "-", "*", "/"]) {
-    app.operation = operation
-} else {
-    app.operation = "*"
+
+if (operation === null) {
+    operation = "*"
 }
-// console.log(product);
+app.operation = operation
 
 maxInt = urlParams.get('m')
 if (maxInt === null) {
     maxInt = 10
 }
-// console.log(maxInt)
+
 function getRandom() {
     return Math.round(Math.random() * maxInt)
 }
