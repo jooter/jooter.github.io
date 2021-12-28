@@ -94,10 +94,10 @@ function myCallback()
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const operation = urlParams.get('o')
+operation = urlParams.get('o')
 
 if (operation === null) {
-    operation = "*"
+    operation = "+"
 }
 app.operation = operation
 
